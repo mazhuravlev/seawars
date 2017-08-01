@@ -2,7 +2,6 @@
 *.log
 *.log.*
 *.lcov
-dist
 node_modules
 .nyc_output
 coverage

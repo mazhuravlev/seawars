@@ -24,7 +24,7 @@ const ENV_PROD = 'prod';
  */
 const env = process.argv.indexOf('-p') === -1 ? ENV_DEV : ENV_PROD;
 const srcDir = path.resolve(__dirname, 'src');
-const distDir = path.resolve(__dirname, 'dist');
+const distDir = path.resolve(__dirname, 'docs');
 const extractLess = new ExtractText({filename: 'assets/[name].css'});
 
 /**
