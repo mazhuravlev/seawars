@@ -1,0 +1,27 @@
+.battle {
+
+  & * {
+    box-sizing: border-box;
+  }
+
+  .battle-area {
+    margin: 20px 0 0 20px;
+    float: left;
+    width: 300px;
+    height: 300px;
+    border: solid @area-border-color;
+    border-width: 1px 0 0 1px;
+
+    & > div {
+      width: 10%;
+      height: 10%;
+      border: solid @area-border-color;
+      border-width: 0 1px 1px 0;
+      float: left;
+      &.deck {
+        background: #ddd;
+      }
+    }
+  }
+
+}
