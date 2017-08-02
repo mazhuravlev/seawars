@@ -4,6 +4,7 @@ import Fluxter from 'fluxter';
 import AreaView from './application/area-view';
 import shotReducer from './application/shot-reducer';
 import restartReducer from './application/restart-reducer';
+import botMiddleware, {updateFired} from './application/bot-middleware';
 
 const src = [
     { decks: 4, count: 1 },
@@ -14,15 +15,16 @@ const src = [
 
 let store = new Fluxter({
     battle: {
-        active: null,
+        activeArea: null,
         my: { items: [], ships: [] },
         opponent: { items: [], ships: [] }
     }
 });
 
-let myAreaView = new AreaView(document.getElementById('myArea'));
-let opponentAreaView = new AreaView(document.getElementById('opponentArea'));
+let myAreaView = new AreaView(document.getElementById('myArea'), true);
+let opponentAreaView = new AreaView(document.getElementById('opponentArea'), false);
 
+store.addMiddleware(botMiddleware);
 store.addReducer('battle', shotReducer);
 store.addReducer('battle', restartReducer);
 store.addAction('shot', (area, x, y) => ({ area, x, y }));
@@ -31,6 +33,10 @@ store.addAction('restart', (src) => ({ src }));
 store.subscribe(store => {
     myAreaView.change(store.state.battle.my);
     opponentAreaView.change(store.state.battle.opponent);
+    let botFiredItems = store.state.battle.my.items
+        .filter(item => item.status !== 'deck' && item.status !== 'empty')
+        .map(item => item.y * 10 + item.x);
+    updateFired(botFiredItems);
 });
 
 opponentAreaView.bindClientEventHandler();

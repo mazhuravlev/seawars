@@ -1,6 +1,7 @@
 export default class AreaView {
 
-    constructor(container) {
+    constructor(container, showDecks) {
+        this.showDecks = showDecks;
         this.container = container;
         this.onShotCb = [];
         this.items = [];
@@ -21,8 +22,8 @@ export default class AreaView {
         }
         this.state = state;
         this.state.items.forEach((item, index) => {
-            this.items[index].classList = [item.status];
-        })
+            this.items[index].classList = [this.showDecks || item.status !== 'deck' ? item.status : 'empty'];
+        });
     }
 
     bindClientEventHandler() {

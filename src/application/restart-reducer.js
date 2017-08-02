@@ -99,7 +99,7 @@ export default function restartReducer(state = {}, actionName, actionData) {
         return items;
     };
 
-    let makeData = (showShips) => {
+    let makeData = () => {
         let cache = {};
         let result = {
             items: makeItems(),
@@ -109,23 +109,22 @@ export default function restartReducer(state = {}, actionName, actionData) {
             for (let i = 0; i < item.count; i++) {
                 let variants = makeVariants(item, cache);
                 let ship = variants[Math.random() * variants.length | 0];
+                let shipIndex = result.ships.push(ship) - 1;
                 ship.forEach(deck => {
                     let index = deck.y * 10 + deck.x;
-                    if (showShips) {
-                        result.items[index].status = 'deck';
-                    }
-                    result.items[index].ship = ship;
+                    result.items[index].status = 'deck';
+                    result.items[index].shipIndex = shipIndex;
                     cache[index] = true;
                 });
-                result.ships.push(ship);
             }
         });
         return result;
     };
 
     return {
-        active: (['my', 'opponent'])[Math.random() * 2 | 0],
-        my: makeData(true),
-        opponent: makeData(false)
+        // activeArea: (['my', 'opponent'])[Math.random() * 2 | 0],
+        activeArea: 'opponent',
+        my: makeData(),
+        opponent: makeData()
     };
 }
