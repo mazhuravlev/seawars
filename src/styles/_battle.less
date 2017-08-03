@@ -9,25 +9,31 @@
     float: left;
     width: 300px;
     height: 300px;
-    border: solid @area-border-color;
+    border: solid #ddd;
     border-width: 1px 0 0 1px;
 
     & > div {
       width: 10%;
       height: 10%;
-      border: solid @area-border-color;
+      border: solid #ddd;
       border-width: 0 1px 1px 0;
       float: left;
       &.deck {
-        background: #ddd;
+        background: #454545;
       }
       &.missed {
         background: #999;
       }
       &.killed {
-        background: #e99;
+        background: #c13c2d;
       }
     }
+  }
+
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
   }
 
 }

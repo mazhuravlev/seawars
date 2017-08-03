@@ -122,8 +122,8 @@ export default function restartReducer(state = {}, actionName, actionData) {
     };
 
     return {
-        // activeArea: (['my', 'opponent'])[Math.random() * 2 | 0],
-        activeArea: 'opponent',
+        winner: null,
+        activeArea: (['my', 'opponent'])[Math.random() * 2 | 0],
         my: makeData(),
         opponent: makeData()
     };

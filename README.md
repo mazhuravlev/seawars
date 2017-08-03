@@ -2,7 +2,8 @@
 
 Online game SeaWars. Example of using [Fluxter](https://github.com/uxter/fluxter).
 
-~In the process of developing~
+### Powered by
+<a href="https://github.com/uxter/fluxter"><img src="https://rawgithub.com/uxter/fluxter/master/logo/fluxter-logo-title-245x60.png" style="max-width:100%;"></a>
 
 ## Note on Patches/Pull Requests
 

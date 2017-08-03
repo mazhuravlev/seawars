@@ -75,6 +75,15 @@ export default function shotReducer(state = {}, actionName, actionData) {
         });
     };
 
+    let updateWinner = (newState, checkArea, winner) => {
+        let isLosing = newState[checkArea].ships.filter(ship => {
+            return ship.filter(deck => deck.status !== 'killed').length > 0;
+        }).length === 0;
+        if (isLosing) {
+            newState.activeArea = null;
+            newState.winner = winner;
+        }
+    };
     if (item.status === 'empty') {
         let newState = getNewState(state, 'missed');
         newState.activeArea = state.activeArea === 'my' ? 'opponent' : 'my';
@@ -90,6 +99,8 @@ export default function shotReducer(state = {}, actionName, actionData) {
         }, 0) === 0;
         if (isShipKilled) {
             wrapKilledShip(newState);
+            updateWinner(newState, 'my', 'opponent');
+            updateWinner(newState, 'opponent', 'my');
         }
         return newState;
     }
