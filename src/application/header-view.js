@@ -12,14 +12,19 @@ export default class HeaderView {
         if (this.state.winner !== state.winner) {
             this.state.winner = state.winner;
             if (this.state.winner) {
-                this.infoContainer.innerHTML = this.state.winner === 'my' ? 'You win!!!' : 'Opponent win :-(';
+                this.infoContainer.innerHTML = this.state.winner === 'my' ? 'Вы победили!' : 'Противник победил';
+                var overlay = document.querySelector('.overlay');
+                if(this.state.winner !== 'my') {
+                    document.querySelector('.overlayText').innerHTML = 'Каждое поражение – это только стимул идти вперед!';
+                }
+                overlay.className+=" shown";
                 return;
             }
         }
         if (this.state.activeArea !== state.activeArea) {
             this.state.activeArea = state.activeArea;
             if (this.state.activeArea) {
-                this.infoContainer.innerHTML = this.state.activeArea === 'my' ? 'opponent\'s move' : 'your move';
+                this.infoContainer.innerHTML = this.state.activeArea === 'my' ? 'ход противника' : 'ваш ход';
             }
         }
     }
@@ -28,9 +33,9 @@ export default class HeaderView {
         let button = document.createElement('button');
         this.container.appendChild(button);
         button.setAttribute('type', 'button');
-        button.innerHTML = 'START';
+        button.innerHTML = 'В Бой!';
         button.addEventListener('click', () => {
-            button.innerHTML = 'RESTART';
+            button.innerHTML = 'ЗАНОВО';
             this.onRestartCb.forEach(cb => cb());
         });
     }

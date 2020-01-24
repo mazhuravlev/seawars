@@ -1,18 +1,40 @@
+@small: ~"(min-width: 320px)";
+
+@big: ~"(min-width: 375px)";
+
 .battle {
+margin-top: 12px;
+  display: flex;
+    align-items: center;
+    flex-direction: column;
 
   & * {
     box-sizing: border-box;
   }
-
+  .divider {
+    background-color: gray;
+    height: 10px;
+    width: 100%;
+  }
   .battle-area {
-    margin: 20px 0 0 20px;
-    float: left;
     width: 300px;
     height: 300px;
+    
+    @media @small {
+      width: 250px;
+    height: 250px;
+    }
+
+    @media @big {
+      width: 350px;
+    height: 350px;
+    }
+    
     border: solid #ddd;
     border-width: 1px 0 0 1px;
 
     & > div {
+      transition: background 0.5s;
       width: 10%;
       height: 10%;
       border: solid #ddd;
