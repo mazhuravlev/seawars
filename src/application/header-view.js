@@ -15,7 +15,7 @@ export default class HeaderView {
                 this.infoContainer.innerHTML = this.state.winner === 'my' ? 'Вы победили!' : 'Противник победил';
                 var overlay = document.querySelector('.overlay');
                 if(this.state.winner !== 'my') {
-                    document.querySelector('.overlayText').innerHTML = 'Каждое поражение – это только стимул идти вперед!';
+                    document.querySelector('.overlayText').innerHTML = '<b>Противник победил<b><br><br>Каждое поражение – это только стимул идти вперед!';
                 }
                 overlay.className+=" shown";
                 return;
