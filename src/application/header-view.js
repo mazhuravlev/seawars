@@ -24,7 +24,7 @@ export default class HeaderView {
         if (this.state.activeArea !== state.activeArea) {
             this.state.activeArea = state.activeArea;
             if (this.state.activeArea) {
-                this.infoContainer.innerHTML = this.state.activeArea === 'my' ? 'ход противника' : 'ваш ход';
+                this.infoContainer.innerHTML = this.state.activeArea === 'my' ? 'ждите' : 'ваш ход';
             }
         }
     }
